@@ -10,10 +10,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.sameershekhar.petsearch.R;
+import com.example.sameershekhar.petsearch.interfaces.OnMovieClickListner;
 import com.example.sameershekhar.petsearch.models.Movies;
-
-import java.util.ArrayList;
+import com.example.sameershekhar.petsearch.utils.Constant;
+import com.example.sameershekhar.petsearch.views.activities.HomeScreen;
+import com.example.sameershekhar.petsearch.views.fragments.AllMoviesListFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,14 +24,18 @@ import butterknife.ButterKnife;
 public class HomeScreenAdapter extends RecyclerView.Adapter<HomeScreenAdapter.MyViewHolder> {
 
     private Context context;
-    private ArrayList<Movies> moviesArrayList;
+    private Movies movies;
+    private HomeScreen onMovieClickListner;
+
 
     public HomeScreenAdapter(Context context) {
         this.context = context;
+        onMovieClickListner=(HomeScreen)context;
+
     }
 
-    public void setData(ArrayList<Movies> moviesArrayList){
-        this.moviesArrayList=moviesArrayList;
+    public void setData(Movies movies){
+        this.movies=movies;
         notifyDataSetChanged();
     }
 
@@ -41,12 +48,31 @@ public class HomeScreenAdapter extends RecyclerView.Adapter<HomeScreenAdapter.My
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        holder.movieTitle.setText(movies.getResults().get(position).getTitle());
+        holder.movieShortDescription.setText(movies.getResults().get(position).getOverview());
+        holder.movieRating.setText(movies.getResults().get(position).getVoteAverage());
+        holder.movieReleaseDate.setText(movies.getResults().get(position).getReleaseDate());
+        holder.movieLanguage.setText(movies.getResults().get(position).getOriginalLanguage());
+        Glide.with(context)
+                .load(Constant.BASE_IMAGE_URL+movies.getResults().get(position).getPosterPath())
+                .centerCrop()
+                .placeholder(R.drawable.placeholder)
+                .into(holder.moviePoster);
+
+        holder.view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onMovieClickListner.onItemClick(position);
+            }
+        });
+
+
 
     }
 
     @Override
     public int getItemCount() {
-        return moviesArrayList!=null ? moviesArrayList.size() : 0;
+        return movies!=null ? movies.getTotalResults() : 0;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -62,8 +88,11 @@ public class HomeScreenAdapter extends RecyclerView.Adapter<HomeScreenAdapter.My
         TextView movieReleaseDate;
         @BindView(R.id.movie_language)
         TextView movieLanguage;
+
+        View view;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            view=itemView;
             ButterKnife.bind(this, itemView);
         }
     }

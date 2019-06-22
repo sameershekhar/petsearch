@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.MovieDetailActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/image_poster"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/Player"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <TextView
+        android:id="@+id/movie_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/marigin16"
+        android:textSize="@dimen/size18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_poster"
+        tools:text="The Prestige The Prestige The PrestigeThe PrestigeThe PrestigeThe PrestigeThe Prestige" />
+
+
+    <LinearLayout
+        android:id="@+id/child_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/marigin24"
+        android:layout_marginRight="@dimen/marigin24"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/marigin16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/movie_description">
+
+        <TextView
+            android:id="@+id/movie_length"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:textSize="@dimen/size20sp"
+            android:paddingLeft="@dimen/marigin10"
+            android:paddingTop="@dimen/marigin3"
+            android:paddingRight="@dimen/marigin10"
+            android:paddingBottom="@dimen/marigin3"
+            tools:text="142 minutes" />
+
+
+        <TextView
+            android:id="@+id/movie_release_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="start"
+            android:paddingLeft="@dimen/marigin10"
+            android:paddingRight="@dimen/marigin10"
+            android:textSize="@dimen/size20sp"
+            tools:text="21st april 2018" />
+
+        <TextView
+            android:id="@+id/movie_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:paddingLeft="@dimen/marigin10"
+            android:paddingTop="@dimen/marigin3"
+            android:paddingRight="@dimen/marigin10"
+            android:paddingBottom="@dimen/marigin3"
+            android:textColor="@color/colorWhite"
+            tools:text=" EN " />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/marigin24"
+        android:layout_marginEnd="@dimen/marigin24"
+        android:id="@+id/child_layout1"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/child_layout"
+        android:layout_marginStart="@dimen/marigin24">
+
+        <TextView
+            android:id="@+id/movie_type"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:maxLines="1"
+            android:paddingLeft="@dimen/marigin10"
+            android:paddingTop="@dimen/marigin3"
+            android:paddingRight="@dimen/marigin10"
+            android:paddingBottom="@dimen/marigin3"
+            android:textSize="@dimen/size20sp"
+            tools:text="Drama, Crime Fiction, Mystery" />
+
+
+        <TextView
+            android:id="@+id/movie_language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorRed"
+            android:gravity="center"
+            android:paddingLeft="@dimen/marigin10"
+            android:paddingTop="@dimen/marigin3"
+            android:paddingRight="@dimen/marigin10"
+            android:paddingBottom="@dimen/marigin3"
+            android:textColor="@color/colorWhite"
+            tools:text=" EN " />
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/child_layout1"
+        android:layout_width="match_parent"
+        android:background="@color/colorWhite"
+        app:cardElevation="@dimen/marigin2"
+        android:layout_margin="@dimen/marigin24"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Budget "
+                android:id="@+id/budget"
+                android:layout_marginLeft="@dimen/marigin10"
+                android:textSize="@dimen/size24sp"
+                android:textColor="@color/cardview_dark_background"
+                android:layout_marginStart="@dimen/marigin10" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="76dp"
+                android:layout_marginLeft="76dp"
+                android:id="@+id/budget_value"
+                android:layout_toEndOf="@+id/budget"
+                android:layout_toRightOf="@+id/budget"
+                android:gravity="center"
+                android:textSize="@dimen/size20sp"
+                tools:text="$25 Million " />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Revenue "
+                android:id="@+id/revenue"
+                android:layout_marginLeft="@dimen/marigin10"
+                android:textSize="@dimen/size24sp"
+                android:layout_below="@+id/budget"
+                android:textColor="@color/cardview_dark_background"
+                android:layout_marginStart="@dimen/marigin10" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/budget"
+                android:layout_marginStart="62dp"
+                android:layout_marginLeft="62dp"
+                android:id="@+id/revenue_value"
+                android:layout_toEndOf="@+id/revenue"
+                android:layout_toRightOf="@+id/revenue"
+                android:textSize="@dimen/size20sp"
+                tools:text="$58.3 Million " />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

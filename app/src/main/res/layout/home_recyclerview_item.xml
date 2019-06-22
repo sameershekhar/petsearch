@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_margin="@dimen/marigin16"
+        android:layout_height="220dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/marigin16"
+            android:layout_marginBottom="@dimen/marigin16"
+            android:layout_marginLeft="@dimen/marigin10"
+            android:layout_marginRight="@dimen/marigin10"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:id="@+id/movie_poster"
+                android:layout_height="wrap_content"
+                android:src="@drawable/Player"/>
+
+            <RelativeLayout
+                android:layout_weight="3"
+                android:layout_width="0dp"
+                android:layout_marginLeft="@dimen/marigin16"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:gravity="top"
+                    tools:text="The Prestige"
+                    android:id="@+id/movie_title"
+                    android:fontFamily="sans-serif-black"
+                    android:textSize="@dimen/size24sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/movie_title"
+                    android:layout_marginTop="@dimen/marigin10"
+                    android:maxLines="4"
+                    android:textColor="@color/colorSheron"
+                    tools:text="The Prestige The Prestige The PrestigeThe
+                     PrestigeThe PrestigeThe PrestigeThe Prestige"
+                    android:id="@+id/movie_short_description"
+                    android:fontFamily="sans-serif"
+                    android:textSize="@dimen/size18sp"/>
+
+                <!--<ImageView-->
+                    <!--android:layout_width="@dimen/margin40dp"-->
+                    <!--android:layout_height="@dimen/margin40dp"-->
+                    <!--android:layout_below="@id/movie_title"-->
+                    <!--android:src="@drawable/ic_chevron_right_black_24dp"-->
+                    <!--android:id="@+id/detail_screen_btn"-->
+                    <!--android:layout_toRightOf="@+id/movie_short_description"/>-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:id="@+id/child_layout"
+                    android:layout_alignParentBottom="true"
+                    android:layout_below="@+id/movie_short_description"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="9.3"
+                        android:id="@+id/movie_rating"
+                        android:gravity="center"
+                        android:paddingTop="@dimen/marigin3"
+                        android:paddingBottom="@dimen/marigin3"
+                        android:paddingLeft="@dimen/marigin10"
+                        android:paddingRight="@dimen/marigin10"
+                        android:layout_marginTop="@dimen/marigin16"
+                        android:textColor="@color/colorWhite"
+                        android:background="@color/colorPrimary"/>
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        tools:text="21st april 2018"
+                        android:id="@+id/movie_release_date"
+                        android:gravity="center"
+                        android:textSize="@dimen/size18sp"
+                        android:paddingLeft="@dimen/marigin10"
+                        android:paddingRight="@dimen/marigin10"
+                        android:layout_marginTop="@dimen/marigin16" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text=" EN "
+                        android:id="@+id/movie_language"
+                        android:gravity="center"
+                        android:textColor="@color/colorWhite"
+                        android:paddingTop="@dimen/marigin3"
+                        android:paddingBottom="@dimen/marigin3"
+                        android:paddingLeft="@dimen/marigin10"
+                        android:paddingRight="@dimen/marigin10"
+                        android:layout_marginTop="@dimen/marigin16"
+                        android:background="@color/colorRed" />
+                </LinearLayout>
+
+            </RelativeLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

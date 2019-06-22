@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="marigin16">16dp</dimen>
+    <dimen name="marigin10">10dp</dimen>
+    <dimen name="size24sp">24sp</dimen>
+    <dimen name="size18sp">18sp</dimen>
+    <dimen name="marigin5">5dp</dimen>
+    <dimen name="marigin2">2dp</dimen>
+    <dimen name="marigin3">3dp</dimen>
+    <dimen name="margin24sp">24dp</dimen>
+    <dimen name="margin40dp">40dp</dimen>
+    <dimen name="margin30dp">30dp</dimen>
+    <dimen name="marigin24">24dp</dimen>
+    <dimen name="size20sp">20sp</dimen>
+</resources>

@@ -13,6 +13,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.example.sameershekhar.petsearch.R;
 import com.example.sameershekhar.petsearch.adapter.HomeScreenAdapter;
@@ -40,12 +42,15 @@ public class HomeScreen extends AppCompatActivity implements OnMovieClickListner
     private int totalNumberOfMovies=20;
     private ArrayList<Result> moviesArraylist=new ArrayList<>();
     private Toolbar toolbar;
+    private ProgressBar progress_circular;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_screen);
+
         //binding adapter to recyclerview
+        progress_circular=findViewById(R.id.progress_circular);
         toolbar=findViewById(R.id.home_screen_toolbar);
         setSupportActionBar(toolbar);
         homeRecyclerView=findViewById(R.id.home_recyclerview);
@@ -60,16 +65,16 @@ public class HomeScreen extends AppCompatActivity implements OnMovieClickListner
             @Override
             public void onChanged(Movies movies) {
 //                Log.v("Test1",movies.toString());
-                if(movies!=null){
+                    progress_circular.setVisibility(View.GONE);
                     totalNumberOfMovies=movies.getResults().size();
                     moviesArraylist.addAll(movies.getResults());
                     homeScreenAdapter.setData(moviesArraylist);
-                }
+
 
             }
         });
 
-        initScrollListener();
+       // initScrollListener();
 
     }
 
@@ -98,7 +103,7 @@ public class HomeScreen extends AppCompatActivity implements OnMovieClickListner
                         //bottom of list!
 
                         currentPageNumber++;
-                        loadMore();
+                       // loadMore();
                         isLoading = true;
                     }
                 }
@@ -107,11 +112,12 @@ public class HomeScreen extends AppCompatActivity implements OnMovieClickListner
     }
 
     public void loadMore(){
-        if(currentPageNumber==2){
-            Log.v("Test11","loadmore");
-            homeScreenViewModel.setPageOffSet(currentPageNumber);
-            isLoading=false;
-        }
+        homeScreenViewModel.setPageOffSet(currentPageNumber);
+        isLoading=false;
+//        if(currentPageNumber==2){
+//            Log.v("Test11","loadmore");
+//
+//        }
     }
 
     @Override

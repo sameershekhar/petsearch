@@ -12,10 +12,9 @@
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
+        app:theme="@style/ToolBarStyle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <ScrollView
@@ -35,7 +34,7 @@
             <ImageView
                 android:id="@+id/image_poster"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="@dimen/margin180dp"
                 android:scaleType="centerCrop" />
 
             <TextView
@@ -132,6 +131,7 @@
                     android:layout_height="wrap_content"
                     android:background="@color/colorRed"
                     android:gravity="center"
+                    android:textAllCaps="true"
                     android:paddingLeft="@dimen/marigin10"
                     android:paddingTop="@dimen/marigin3"
                     android:paddingRight="@dimen/marigin10"
@@ -146,6 +146,7 @@
                 android:layout_margin="@dimen/marigin24"
                 android:background="@color/colorWhite"
                 app:cardElevation="@dimen/marigin2"
+                android:layout_marginBottom="@dimen/margin40dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/child_layout1">
 

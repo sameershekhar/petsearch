@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_margin="@dimen/marigin16"
@@ -39,8 +40,9 @@
                     android:gravity="top"
                     tools:text="The Prestige"
                     android:id="@+id/movie_title"
-                    android:fontFamily="sans-serif-black"
-                    android:textSize="@dimen/size24sp"/>
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/size22sp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -54,13 +56,6 @@
                     android:fontFamily="sans-serif"
                     android:textSize="@dimen/size18sp"/>
 
-                <!--<ImageView-->
-                    <!--android:layout_width="@dimen/margin40dp"-->
-                    <!--android:layout_height="@dimen/margin40dp"-->
-                    <!--android:layout_below="@id/movie_title"-->
-                    <!--android:src="@drawable/ic_chevron_right_black_24dp"-->
-                    <!--android:id="@+id/detail_screen_btn"-->
-                    <!--android:layout_toRightOf="@+id/movie_short_description"/>-->
 
                 <LinearLayout
                     android:layout_width="match_parent"

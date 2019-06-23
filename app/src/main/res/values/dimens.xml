@@ -15,4 +15,6 @@
     <dimen name="cardSize220">220dp</dimen>
     <dimen name="size14sp">14sp</dimen>
     <dimen name="size16sp">16sp</dimen>
+    <dimen name="margin180dp">180dp</dimen>
+    <dimen name="size22sp">22sp</dimen>
 </resources>

@@ -22,10 +22,10 @@ public class MoviesDataRepo {
         this.retrofitClient = RetrofitClient.getRetrofitClient();
     }
 
-    public LiveData<Movies> getMoviesDataFromServer(int pageOffSet){
+    public MutableLiveData<Movies> getMoviesDataFromServer(int pageOffSet){
         Log.v("Test3",pageOffSet+"");
          final MutableLiveData<Movies> moviesLiveData=new MutableLiveData<>();
-         retrofitClient.getServerEndPoints().getMoviesDetailsFromServer("","en-US","popularity.desc",false,false,pageOffSet)
+         retrofitClient.getServerEndPoints().getMoviesDetailsFromServer(Constant.API_KEY,"en-US","popularity.desc",false,false,pageOffSet)
                  .enqueue(new Callback<Movies>() {
                      @Override
                      public void onResponse(Call<Movies> call, Response<Movies> response) {
@@ -42,13 +42,13 @@ public class MoviesDataRepo {
          return moviesLiveData;
     }
 
-    public SingleMovie getSingleMovieDataFromServer(int movieId){
-       // final MutableLiveData<SingleMovie> singleMovieLiveData=new MutableLiveData<>();
-        retrofitClient.getServerEndPoints().getSingleMovieDetailsFromServer(movieId, Constant.BASE_URL)
+    public LiveData<SingleMovie> getSingleMovieDataFromServer(int movieId){
+        final MutableLiveData<SingleMovie> singleMovieLiveData=new MutableLiveData<>();
+        retrofitClient.getServerEndPoints().getSingleMovieDetailsFromServer(movieId, Constant.API_KEY)
                 .enqueue(new Callback<SingleMovie>() {
                     @Override
                     public void onResponse(Call<SingleMovie> call, Response<SingleMovie> response) {
-                         singleMovie=response.body();
+                         singleMovieLiveData.setValue(response.body());
                         Log.v("Test6",response.body()+"");
                     }
 
@@ -57,6 +57,6 @@ public class MoviesDataRepo {
                         Log.v("Test7",t.getMessage()+"");
                     }
                 });
-        return singleMovie;
+        return singleMovieLiveData;
     }
 }

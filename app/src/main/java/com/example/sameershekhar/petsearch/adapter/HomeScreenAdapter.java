@@ -14,9 +14,11 @@ import com.bumptech.glide.Glide;
 import com.example.sameershekhar.petsearch.R;
 import com.example.sameershekhar.petsearch.interfaces.OnMovieClickListner;
 import com.example.sameershekhar.petsearch.models.Movies;
+import com.example.sameershekhar.petsearch.models.Result;
 import com.example.sameershekhar.petsearch.utils.Constant;
 import com.example.sameershekhar.petsearch.views.activities.HomeScreen;
-import com.example.sameershekhar.petsearch.views.fragments.AllMoviesListFragment;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,7 +26,7 @@ import butterknife.ButterKnife;
 public class HomeScreenAdapter extends RecyclerView.Adapter<HomeScreenAdapter.MyViewHolder> {
 
     private Context context;
-    private Movies movies;
+    private List<Result> resultList;
     private HomeScreen onMovieClickListner;
 
 
@@ -34,8 +36,8 @@ public class HomeScreenAdapter extends RecyclerView.Adapter<HomeScreenAdapter.My
 
     }
 
-    public void setData(Movies movies){
-        this.movies=movies;
+    public void setData(List<Result> resultList){
+        this.resultList=resultList;
         notifyDataSetChanged();
     }
 
@@ -48,13 +50,13 @@ public class HomeScreenAdapter extends RecyclerView.Adapter<HomeScreenAdapter.My
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.movieTitle.setText(movies.getResults().get(position).getTitle());
-        holder.movieShortDescription.setText(movies.getResults().get(position).getOverview());
-        holder.movieRating.setText(movies.getResults().get(position).getVoteAverage());
-        holder.movieReleaseDate.setText(movies.getResults().get(position).getReleaseDate());
-        holder.movieLanguage.setText(movies.getResults().get(position).getOriginalLanguage());
+        holder.movieTitle.setText(resultList.get(position).getTitle());
+        holder.movieShortDescription.setText(resultList.get(position).getOverview());
+        holder.movieRating.setText(resultList.get(position).getVoteAverage()+"");
+        holder.movieReleaseDate.setText(Constant.Utils.getFromatedReleaseDate(resultList.get(position).getReleaseDate()));
+        holder.movieLanguage.setText(resultList.get(position).getOriginalLanguage());
         Glide.with(context)
-                .load(Constant.BASE_IMAGE_URL+movies.getResults().get(position).getPosterPath())
+                .load(Constant.BASE_IMAGE_URL+resultList.get(position).getPosterPath())
                 .centerCrop()
                 .placeholder(R.drawable.placeholder)
                 .into(holder.moviePoster);
@@ -62,7 +64,7 @@ public class HomeScreenAdapter extends RecyclerView.Adapter<HomeScreenAdapter.My
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onMovieClickListner.onItemClick(position);
+                onMovieClickListner.onItemClick(resultList.get(position).getId());
             }
         });
 
@@ -72,7 +74,7 @@ public class HomeScreenAdapter extends RecyclerView.Adapter<HomeScreenAdapter.My
 
     @Override
     public int getItemCount() {
-        return movies!=null ? movies.getTotalResults() : 0;
+        return resultList!=null ? resultList.size() : 0;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

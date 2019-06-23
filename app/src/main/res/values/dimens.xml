@@ -12,4 +12,7 @@
     <dimen name="margin30dp">30dp</dimen>
     <dimen name="marigin24">24dp</dimen>
     <dimen name="size20sp">20sp</dimen>
+    <dimen name="cardSize220">220dp</dimen>
+    <dimen name="size14sp">14sp</dimen>
+    <dimen name="size16sp">16sp</dimen>
 </resources>

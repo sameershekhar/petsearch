@@ -1,13 +1,17 @@
 package com.example.sameershekhar.petsearch.views.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.app.ActionBar;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toolbar;
+
 
 import com.bumptech.glide.Glide;
 import com.example.sameershekhar.petsearch.R;
@@ -22,8 +26,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MovieDetailActivity extends AppCompatActivity {
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     @BindView(R.id.image_poster)
     ImageView imagePoster;
     @BindView(R.id.movie_description)
@@ -42,80 +44,57 @@ public class MovieDetailActivity extends AppCompatActivity {
     TextView budgetValue;
     @BindView(R.id.revenue_value)
     TextView revenueValue;
+    @BindView(R.id.my_toolbar)
+    Toolbar myToolbar;
 
     private MovieDetailScreenViewModel movieDetailScreenViewModel;
-    private String[] monthsOfYear= {"Jan" ," Feb" ,"March", "April" ,"May" ,"June","July" ,"August","Sep" ,"Oct" ,"Nov","Dec"};
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail);
+
         ButterKnife.bind(this);
         movieDetailScreenViewModel = ViewModelProviders.of(this).get(MovieDetailScreenViewModel.class);
+        myToolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp));
+        myToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //What to do on back clicked
+                finish();
+            }
+        });
+
 
         if(getIntent()!=null && getIntent().hasExtra(Constant.MOVIE_ID)){
-            movieDetailScreenViewModel.LoadSingleMovieData(getIntent().getIntExtra(Constant.MOVIE_ID,0));
+            Log.v("test10",getIntent().getIntExtra(Constant.MOVIE_ID,0)+"");
+            movieDetailScreenViewModel.setMovieId(getIntent().getIntExtra(Constant.MOVIE_ID,0));
         }
 
         movieDetailScreenViewModel.getSingleMovieLiveData().observe(this, new Observer<SingleMovie>() {
             @Override
             public void onChanged(SingleMovie singleMovie) {
-                movieDescription.setText(singleMovie.getOverview());
-                movieLanguage.setText(singleMovie.getOriginalLanguage());
-                budgetValue.setText(singleMovie.getBudget());
-                revenueValue.setText(singleMovie.getRevenue());
-                movieLength.setText(singleMovie.getRuntime() + " minutes");
-                movieType.setText(getFromatedMovieType(singleMovie.getGenres()));
-                movieReleaseDate.setText(getFromatedReleaseDate(singleMovie.getReleaseDate()));
-                Glide.with(MovieDetailActivity.this)
-                        .load(Constant.BASE_IMAGE_URL+singleMovie.getPosterPath())
-                        .centerCrop()
-                        .placeholder(R.drawable.placeholder)
-                        .into(imagePoster);
+                if(singleMovie!=null){
+                    myToolbar.setTitle(singleMovie.getTitle());
+                    movieDescription.setText(singleMovie.getOverview());
+                    movieLanguage.setText(singleMovie.getOriginalLanguage());
+                    movieRating.setText(String.valueOf(singleMovie.getVoteAverage()));
+                    budgetValue.setText("$ "+String.valueOf(singleMovie.getBudget()));
+                    revenueValue.setText("$ "+String.valueOf(singleMovie.getRevenue()));
+                    movieLength.setText(String.valueOf(singleMovie.getRuntime()) + " minutes");
+                    movieType.setText(Constant.Utils.getFromatedMovieType(singleMovie.getGenres()));
+                    movieReleaseDate.setText(Constant.Utils.getFromatedReleaseDate(singleMovie.getReleaseDate()));
+                    Glide.with(MovieDetailActivity.this)
+                            .load(Constant.BASE_IMAGE_URL+singleMovie.getPosterPath())
+                            .centerCrop()
+                            .placeholder(R.drawable.placeholder)
+                            .into(imagePoster);
+                }
+
             }
         });
-
-
-
-
-
-
     }
 
-    private String getFromatedMovieType(List<Genre> genres) {
-
-        String movieType="";
-        if(genres!=null){
-            for(int i=0;i<genres.size();i++){
-                movieType += genres.get(i).getName()+" ";
-            }
-        }
-        return movieType;
-
-    }
-
-    private String getFromatedReleaseDate(String releaseData){
-        String[] date=releaseData.split("-");
-        int index=0;
-        int day=1;
-        if(releaseData!=null){
-            if(date!=null && date.length ==3){
-                if(Integer.parseInt(date[1]) < 10){
-                    index=Integer.parseInt(date[1])%10;
-                }else {
-                    index=Integer.parseInt(date[1]);
-                }
-
-                if(Integer.parseInt(date[2]) < 10){
-                    day=Integer.parseInt(date[2])%10;
-                }else {
-                    day=Integer.parseInt(date[2]);
-                }
-            }
-        }
-
-        return day+" "+monthsOfYear[index-1]+ " "+date[0];
-    }
 
 }
